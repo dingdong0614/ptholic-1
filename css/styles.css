@@ -300,44 +300,115 @@ h1, h2, h3 {
 /* ---------------- congestion widget ---------------- */
 
 .congestion-widget {
+  position: relative;
   display: inline-flex;
   align-items: center;
-  gap: var(--sp-3);
+  gap: var(--sp-4);
   border: 1px solid var(--line-strong);
   border-left: 3px solid var(--status-mid);
-  background: var(--surface);
-  padding: var(--sp-3) var(--sp-4);
+  background: linear-gradient(180deg, var(--surface-raised), var(--surface));
+  padding: var(--sp-3) var(--sp-5);
   margin-bottom: var(--sp-6);
   transition: border-color 0.2s var(--ease);
+  animation: congestion-fade-in 0.35s var(--ease);
 }
 .congestion-widget[data-level="low"] { border-left-color: var(--status-low); }
 .congestion-widget[data-level="mid"] { border-left-color: var(--status-mid); }
 .congestion-widget[data-level="high"] { border-left-color: var(--status-high); }
 
-.congestion-icon { font-size: 1.1rem; line-height: 1; }
+.congestion-widget.is-flash { animation: congestion-flash 0.6s var(--ease); }
+
+.congestion-pulse {
+  position: relative;
+  width: 9px; height: 9px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--status-mid);
+}
+.congestion-widget[data-level="low"] .congestion-pulse { color: var(--status-low); }
+.congestion-widget[data-level="high"] .congestion-pulse { color: var(--status-high); }
+.congestion-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  animation: congestion-ping 1.8s var(--ease) infinite;
+}
 
 .congestion-body { display: flex; flex-direction: column; gap: 2px; }
 
 .congestion-eyebrow {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
+  font-size: 0.66rem;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--text-faint);
+  color: var(--accent-strong);
 }
 
-.congestion-status { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+.congestion-status {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.05rem;
+  color: var(--status-mid);
+  transition: color 0.2s var(--ease);
+}
+.congestion-widget[data-level="low"] .congestion-status { color: var(--status-low); }
+.congestion-widget[data-level="high"] .congestion-status { color: var(--status-high); }
+
+.congestion-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  margin-left: var(--sp-2);
+  padding-left: var(--sp-4);
+  border-left: 1px solid var(--line);
+}
 
 .congestion-updated {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--text-faint);
-  margin-left: var(--sp-2);
+  white-space: nowrap;
+}
+
+.congestion-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px; height: 26px;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s var(--ease), border-color 0.15s var(--ease), transform 0.1s var(--ease);
+}
+.congestion-refresh:hover { color: var(--accent-strong); border-color: var(--accent); }
+.congestion-refresh:active { transform: translateY(1px); }
+.congestion-refresh.is-loading svg { animation: congestion-spin 0.7s linear infinite; }
+
+@keyframes congestion-ping {
+  0% { transform: scale(0.6); opacity: 0.9; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+@keyframes congestion-fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes congestion-flash {
+  0% { box-shadow: 0 0 0 0 rgba(242, 240, 236, 0.22); }
+  100% { box-shadow: 0 0 0 14px rgba(242, 240, 236, 0); }
+}
+@keyframes congestion-spin {
+  to { transform: rotate(360deg); }
 }
 
 @media (max-width: 480px) {
   .congestion-widget { width: 100%; }
-  .congestion-updated { display: block; margin-left: 0; }
+  .congestion-meta { margin-left: auto; }
 }
 
 /* ---------------- page hero (subpages) ---------------- */

@@ -77,7 +77,10 @@ function renderPage(adminKey) {
     font-size: 0.85rem;
     color: var(--text-muted);
   }
-  .current strong { color: var(--text); font-size: 1rem; }
+  .current strong { color: var(--text); font-size: 1rem; transition: color 0.15s ease; }
+  .current strong[data-level="low"] { color: var(--lime); }
+  .current strong[data-level="mid"] { color: var(--amber); }
+  .current strong[data-level="high"] { color: var(--red); }
   .buttons { display: grid; gap: 10px; }
   button.status-btn {
     padding: 14px;
@@ -123,6 +126,7 @@ function renderPage(adminKey) {
       var curUpdated = document.getElementById("curUpdated");
       var msg = document.getElementById("msg");
       var buttons = document.querySelectorAll(".status-btn");
+      var LEVELS = { 한산: "low", 보통: "mid", 혼잡: "high" };
 
       function fmtTime(iso) {
         if (!iso) return "-";
@@ -130,12 +134,17 @@ function renderPage(adminKey) {
         return d.toLocaleString("ko-KR");
       }
 
+      function applyStatus(status, updatedAt) {
+        curStatus.textContent = status || "-";
+        curStatus.dataset.level = LEVELS[status] || "";
+        curUpdated.textContent = fmtTime(updatedAt);
+      }
+
       function loadState() {
         fetch("/api/congestion", { cache: "no-store" })
           .then(function (r) { return r.json(); })
           .then(function (data) {
-            curStatus.textContent = data.status || "-";
-            curUpdated.textContent = fmtTime(data.updatedAt);
+            applyStatus(data.status, data.updatedAt);
           })
           .catch(function () {
             curStatus.textContent = "불러오기 실패";
@@ -161,8 +170,7 @@ function renderPage(adminKey) {
               return r.json();
             })
             .then(function (data) {
-              curStatus.textContent = data.status;
-              curUpdated.textContent = fmtTime(data.updatedAt);
+              applyStatus(data.status, data.updatedAt);
               msg.dataset.error = "false";
               msg.textContent = "'" + data.status + "'(으)로 변경되었습니다.";
             })
