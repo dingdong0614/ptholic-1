@@ -9,7 +9,7 @@
 
   const POLL_MS = 60000;
 
-  const LEVELS = { 한산: "low", 보통: "mid", 혼잡: "high" };
+  const LEVELS = { 한산: "low", 보통: "mid", 혼잡: "high", 마감: "closed" };
 
   let lastStatus = null;
 

@@ -38,6 +38,7 @@ function renderPage(adminKey) {
     --lime: #c6ff3d;
     --amber: #ffb84d;
     --red: #ff4d4d;
+    --gray: #9c9a94;
     --font-body: "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
     --font-mono: "JetBrains Mono", ui-monospace, monospace;
   }
@@ -81,6 +82,7 @@ function renderPage(adminKey) {
   .current strong[data-level="low"] { color: var(--lime); }
   .current strong[data-level="mid"] { color: var(--amber); }
   .current strong[data-level="high"] { color: var(--red); }
+  .current strong[data-level="closed"] { color: var(--gray); }
   .buttons { display: grid; gap: 10px; }
   button.status-btn {
     padding: 14px;
@@ -99,6 +101,7 @@ function renderPage(adminKey) {
   button.status-btn[data-level="low"] { border-left: 4px solid var(--lime); }
   button.status-btn[data-level="mid"] { border-left: 4px solid var(--amber); }
   button.status-btn[data-level="high"] { border-left: 4px solid var(--red); }
+  button.status-btn[data-level="closed"] { border-left: 4px solid var(--gray); }
   .msg { min-height: 1.4em; font-size: 0.85rem; margin: 16px 0 0; color: var(--lime); }
   .msg[data-error="true"] { color: var(--accent); }
 </style>
@@ -115,6 +118,7 @@ function renderPage(adminKey) {
       <button class="status-btn" data-level="low" data-status="한산">한산</button>
       <button class="status-btn" data-level="mid" data-status="보통">보통</button>
       <button class="status-btn" data-level="high" data-status="혼잡">혼잡</button>
+      <button class="status-btn" data-level="closed" data-status="마감">마감</button>
     </div>
     <p class="msg" id="msg" role="status" aria-live="polite"></p>
   </div>
@@ -126,7 +130,7 @@ function renderPage(adminKey) {
       var curUpdated = document.getElementById("curUpdated");
       var msg = document.getElementById("msg");
       var buttons = document.querySelectorAll(".status-btn");
-      var LEVELS = { 한산: "low", 보통: "mid", 혼잡: "high" };
+      var LEVELS = { 한산: "low", 보통: "mid", 혼잡: "high", 마감: "closed" };
 
       function fmtTime(iso) {
         if (!iso) return "-";

@@ -8,7 +8,7 @@
  */
 
 const KV_KEY = "gym:congestion";
-const ALLOWED_STATUSES = ["한산", "보통", "혼잡"];
+const ALLOWED_STATUSES = ["한산", "보통", "혼잡", "마감"];
 
 function kvBase() {
   const url = process.env.KV_REST_API_URL;

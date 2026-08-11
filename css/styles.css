@@ -21,6 +21,7 @@
   --status-low: var(--lime);
   --status-mid: #ffb84d;
   --status-high: #ff4d4d;
+  --status-closed: #9c9a94;
 
   /* type */
   --font-display: "Black Han Sans", "Pretendard", sans-serif;
@@ -315,6 +316,7 @@ h1, h2, h3 {
 .congestion-widget[data-level="low"] { border-left-color: var(--status-low); }
 .congestion-widget[data-level="mid"] { border-left-color: var(--status-mid); }
 .congestion-widget[data-level="high"] { border-left-color: var(--status-high); }
+.congestion-widget[data-level="closed"] { border-left-color: var(--status-closed); }
 
 .congestion-widget.is-flash { animation: congestion-flash 0.6s var(--ease); }
 
@@ -328,6 +330,7 @@ h1, h2, h3 {
 }
 .congestion-widget[data-level="low"] .congestion-pulse { color: var(--status-low); }
 .congestion-widget[data-level="high"] .congestion-pulse { color: var(--status-high); }
+.congestion-widget[data-level="closed"] .congestion-pulse { color: var(--status-closed); }
 .congestion-pulse::after {
   content: "";
   position: absolute;
@@ -348,14 +351,15 @@ h1, h2, h3 {
 }
 
 .congestion-status {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
   color: var(--status-mid);
   transition: color 0.2s var(--ease);
 }
 .congestion-widget[data-level="low"] .congestion-status { color: var(--status-low); }
 .congestion-widget[data-level="high"] .congestion-status { color: var(--status-high); }
+.congestion-widget[data-level="closed"] .congestion-status { color: var(--status-closed); }
 
 .congestion-meta {
   display: flex;
