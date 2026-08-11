@@ -71,6 +71,14 @@
         <span class="badge">🕐 평일 06:00–24:00</span>
         <span class="badge">🕐 주말 09:00–17:00</span>
       </div>
+      <div class="congestion-widget" id="congestionWidget" data-level="" hidden>
+        <span class="congestion-icon" id="congestionIcon" aria-hidden="true"></span>
+        <span class="congestion-body">
+          <span class="congestion-eyebrow">지금 혼잡도</span>
+          <span class="congestion-status" id="congestionStatus">-</span>
+        </span>
+        <span class="congestion-updated" id="congestionUpdated"></span>
+      </div>
       <div class="hero-actions">
         <a class="btn btn-primary btn-lg" href="contact.html#trial">무료 체험 · 상담 신청</a>
         <a class="btn btn-outline btn-lg" id="heroReserveBtn" href="#" target="_blank" rel="noopener">네이버 예약 바로가기</a>
@@ -197,5 +205,6 @@
 
 <script src="js/data.js"></script>
 <script src="js/main.js"></script>
+<script src="js/congestion.js"></script>
 </body>
 </html>

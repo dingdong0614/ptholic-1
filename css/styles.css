@@ -18,6 +18,9 @@
   --accent-strong: #ff7a45;
   --accent-ink: #1a0a03;
   --lime: #c6ff3d;
+  --status-low: var(--lime);
+  --status-mid: #ffb84d;
+  --status-high: #ff4d4d;
 
   /* type */
   --font-display: "Black Han Sans", "Pretendard", sans-serif;
@@ -293,6 +296,49 @@ h1, h2, h3 {
 }
 
 .hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); }
+
+/* ---------------- congestion widget ---------------- */
+
+.congestion-widget {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-3);
+  border: 1px solid var(--line-strong);
+  border-left: 3px solid var(--status-mid);
+  background: var(--surface);
+  padding: var(--sp-3) var(--sp-4);
+  margin-bottom: var(--sp-6);
+  transition: border-color 0.2s var(--ease);
+}
+.congestion-widget[data-level="low"] { border-left-color: var(--status-low); }
+.congestion-widget[data-level="mid"] { border-left-color: var(--status-mid); }
+.congestion-widget[data-level="high"] { border-left-color: var(--status-high); }
+
+.congestion-icon { font-size: 1.1rem; line-height: 1; }
+
+.congestion-body { display: flex; flex-direction: column; gap: 2px; }
+
+.congestion-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.congestion-status { font-weight: 700; font-size: 0.95rem; color: var(--text); }
+
+.congestion-updated {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-left: var(--sp-2);
+}
+
+@media (max-width: 480px) {
+  .congestion-widget { width: 100%; }
+  .congestion-updated { display: block; margin-left: 0; }
+}
 
 /* ---------------- page hero (subpages) ---------------- */
 
