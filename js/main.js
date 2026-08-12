@@ -239,6 +239,15 @@
         ).join("")}
       </table>`;
 
+    const renderPanel = (trainer) => `
+      <div class="schedule-panel-grid">
+        <div class="schedule-info">
+          <p class="schedule-motto">“${trainer.tagline}”</p>
+          <p class="schedule-teaching">${trainer.teachingStyle}</p>
+        </div>
+        <div class="schedule-wrap">${renderTable(trainer)}</div>
+      </div>`;
+
     tabsEl.innerHTML = TRAINERS.map(
       (t, i) => `
       <button class="pricing-tab" id="schedule-tab-${i}" role="tab"
@@ -248,7 +257,7 @@
     ).join("");
 
     bodyEl.innerHTML = TRAINERS.map(
-      (t, i) => `<div class="schedule-panel" id="schedule-panel-${i}" ${i === 0 ? "" : "hidden"}>${renderTable(t)}</div>`
+      (t, i) => `<div class="schedule-panel" id="schedule-panel-${i}" ${i === 0 ? "" : "hidden"}>${renderPanel(t)}</div>`
     ).join("");
 
     tabsEl.querySelectorAll(".pricing-tab").forEach((tab) => {

@@ -742,7 +742,7 @@ h1, h2, h3 {
 
 .zone-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--sp-4);
 }
 
@@ -868,7 +868,18 @@ h1, h2, h3 {
 .schedule-section { border: 1px solid var(--line); background: var(--surface); padding: var(--sp-6); }
 .schedule-tabs { display: flex; flex-wrap: wrap; gap: var(--sp-2); border-bottom: 1px solid var(--line); margin-bottom: var(--sp-5); }
 
-.schedule-wrap { overflow-x: auto; }
+.schedule-panel-grid { display: flex; gap: var(--sp-6); flex-wrap: wrap; align-items: flex-start; }
+.schedule-info { flex: 1 1 260px; min-width: 220px; }
+.schedule-motto {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 1.15rem;
+  color: var(--accent-strong);
+  margin: 0 0 var(--sp-3);
+}
+.schedule-teaching { color: var(--text-muted); font-size: 0.9rem; line-height: 1.75; margin: 0; }
+
+.schedule-wrap { flex: 1 1 320px; overflow-x: auto; }
 .schedule-table { border-collapse: collapse; width: 100%; max-width: 480px; font-family: var(--font-mono); font-size: 0.85rem; }
 .schedule-table th, .schedule-table td {
   border: 1px solid var(--line);
