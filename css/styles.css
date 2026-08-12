@@ -761,21 +761,24 @@ h1, h2, h3 {
 
 /* ---------------- trainers ---------------- */
 
-.trainer-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--sp-5);
-}
-
-.trainer-card {
-  background: var(--surface);
+.trainer-panel {
   border: 1px solid var(--line);
+  background: var(--surface);
+  padding: var(--sp-6);
+}
+.trainer-panel[hidden] { display: none; }
+
+.trainer-panel-grid {
+  display: flex;
+  gap: var(--sp-6);
+  flex-wrap: wrap;
 }
 
 .trainer-photo {
+  flex: 0 0 260px;
+  max-width: 260px;
   aspect-ratio: 3 / 4;
   background: var(--surface-raised);
-  border-bottom: 1px solid var(--line);
   overflow: hidden;
 }
 .trainer-photo img {
@@ -786,10 +789,10 @@ h1, h2, h3 {
   filter: saturate(0.92) contrast(1.03);
 }
 
-.trainer-body { padding: var(--sp-5); }
+.trainer-body { flex: 1 1 320px; min-width: 240px; }
 
-.trainer-name { font-family: var(--font-display); font-size: 1.4rem; margin-bottom: var(--sp-1); }
-.trainer-tagline { color: var(--accent-strong); font-size: 0.88rem; margin: 0 0 var(--sp-3); font-style: normal; }
+.trainer-name { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: var(--sp-1); }
+.trainer-tagline { color: var(--accent-strong); font-size: 0.92rem; margin: 0 0 var(--sp-3); font-style: normal; }
 .trainer-specialty {
   display: inline-block;
   font-family: var(--font-mono);
@@ -801,56 +804,46 @@ h1, h2, h3 {
   margin-bottom: var(--sp-4);
 }
 
-.cert-toggle {
-  background: transparent;
-  border: none;
-  color: var(--text-muted);
-  font-family: var(--font-body);
-  font-size: 0.85rem;
-  cursor: pointer;
-  padding: 0;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2);
-  width: 100%;
-  border-top: 1px solid var(--line);
-  padding-top: var(--sp-4);
-}
-.cert-toggle:hover { color: var(--text); }
+.trainer-teaching { color: var(--text-muted); font-size: 0.92rem; line-height: 1.75; margin: 0 0 var(--sp-2); }
 
-.cert-toggle .chev {
-  margin-left: auto;
-  transition: transform 0.2s var(--ease);
-}
-.cert-toggle[aria-expanded="true"] .chev { transform: rotate(180deg); }
-
-.cert-list {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.3s var(--ease);
-}
-.cert-list.open { max-height: 2400px; }
-
-.cert-list ul { list-style: none; margin: 0; padding: 0; }
-
-.cert-group-title {
+.trainer-section-title {
   font-family: var(--font-mono);
   font-size: 0.68rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent-strong);
-  margin: var(--sp-4) 0 var(--sp-2);
+  margin: var(--sp-5) 0 var(--sp-2);
 }
-.cert-list > .cert-group-title:first-child { margin-top: var(--sp-3); }
 
-.cert-list li {
-  font-size: 0.82rem;
+.trainer-body ul { list-style: none; margin: 0; padding: 0; }
+.trainer-body li {
+  font-size: 0.85rem;
   color: var(--text-muted);
   padding: var(--sp-2) 0 0;
   border-top: 1px dotted var(--line);
   margin-top: var(--sp-2);
 }
-.cert-list li:first-child { border-top: none; margin-top: 0; }
+.trainer-body li:first-child { border-top: none; margin-top: 0; }
+
+.trainer-video-embed { aspect-ratio: 16 / 9; max-width: 480px; border: 1px solid var(--line); }
+.trainer-video-embed iframe { width: 100%; height: 100%; border: 0; }
+
+.trainer-review {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  padding: var(--sp-3) 0 0;
+  border-top: 1px dotted var(--line);
+  margin-top: var(--sp-2);
+}
+.trainer-review:first-of-type { border-top: none; margin-top: 0; }
+
+.trainer-placeholder {
+  border: 1px dashed var(--line-strong);
+  padding: var(--sp-4);
+  color: var(--text-faint);
+  font-size: 0.85rem;
+  margin: 0;
+}
 
 /* ---------------- process ---------------- */
 
@@ -1068,7 +1061,7 @@ fieldset.field { border: none; margin: 0 0 var(--sp-4); padding: 0; }
 ------------------------------------------------------------------- */
 
 @media (max-width: 960px) {
-  .feature-grid, .zone-grid, .trainer-grid { grid-template-columns: 1fr; }
+  .feature-grid, .zone-grid { grid-template-columns: 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
   .price-table { grid-template-columns: repeat(2, 1fr); }
   .process-grid { grid-template-columns: 1fr; }

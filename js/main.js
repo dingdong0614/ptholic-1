@@ -172,39 +172,61 @@
   /* ---------------- trainers ---------------- */
 
   function renderTrainers() {
-    const el = $("trainerGrid");
-    if (!el) return;
+    const tabsEl = $("trainerTabs");
+    const detailEl = $("trainerDetail");
+    if (!tabsEl || !detailEl) return;
 
-    el.innerHTML = TRAINERS.map(
+    tabsEl.innerHTML = TRAINERS.map(
       (t, i) => `
-      <article class="trainer-card">
-        <div class="trainer-photo">
-          <img src="${t.photo}" alt="${t.name} 트레이너" loading="lazy" />
-        </div>
-        <div class="trainer-body">
-          <h3 class="trainer-name">${t.name}</h3>
-          <p class="trainer-tagline">“${t.tagline}”</p>
-          <span class="trainer-specialty">${t.specialty}</span>
-          <button class="cert-toggle" aria-expanded="false" aria-controls="certs-${i}">
-            <span class="cert-toggle-label">경력 · 자격 보기</span>
-            <span class="chev" aria-hidden="true">⌄</span>
-          </button>
-          <div class="cert-list" id="certs-${i}">
-            <p class="cert-group-title">경력</p>
-            <ul>${t.career.map((c) => `<li>${c}</li>`).join("")}</ul>
-            <p class="cert-group-title">자격사항</p>
-            <ul>${t.certs.map((c) => `<li>${c}</li>`).join("")}</ul>
-          </div>
-        </div>
-      </article>`
+      <button class="pricing-tab" id="trainer-tab-${i}" role="tab"
+        aria-selected="${i === 0}" aria-controls="trainer-panel-${i}" data-target="${i}">
+        ${t.name}
+      </button>`
     ).join("");
 
-    el.querySelectorAll(".cert-toggle").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const open = btn.getAttribute("aria-expanded") === "true";
-        btn.setAttribute("aria-expanded", String(!open));
-        btn.nextElementSibling.classList.toggle("open", !open);
-        btn.querySelector(".cert-toggle-label").textContent = !open ? "경력 · 자격 접기" : "경력 · 자격 보기";
+    detailEl.innerHTML = TRAINERS.map(
+      (t, i) => `
+      <div class="trainer-panel" id="trainer-panel-${i}" role="tabpanel" aria-labelledby="trainer-tab-${i}" ${i === 0 ? "" : "hidden"}>
+        <div class="trainer-panel-grid">
+          <div class="trainer-photo">
+            <img src="${t.photo}" alt="${t.name} 트레이너" loading="lazy" />
+          </div>
+          <div class="trainer-body">
+            <h2 class="trainer-name">${t.name}</h2>
+            <p class="trainer-tagline">“${t.tagline}”</p>
+            <span class="trainer-specialty">${t.specialty}</span>
+            <p class="trainer-teaching">${t.teachingStyle}</p>
+
+            <p class="trainer-section-title">경력</p>
+            <ul>${t.career.map((c) => `<li>${c}</li>`).join("")}</ul>
+
+            <p class="trainer-section-title">자격사항</p>
+            <ul>${t.certs.map((c) => `<li>${c}</li>`).join("")}</ul>
+
+            <p class="trainer-section-title">영상</p>
+            ${
+              t.videoUrl
+                ? `<div class="trainer-video-embed"><iframe src="${t.videoUrl}" title="${t.name} 트레이너 영상" loading="lazy" allowfullscreen></iframe></div>`
+                : `<p class="trainer-placeholder">트레이너 영상은 준비 중입니다.</p>`
+            }
+
+            <p class="trainer-section-title">후기</p>
+            ${
+              t.reviews && t.reviews.length
+                ? t.reviews.map((r) => `<p class="trainer-review">“${r}”</p>`).join("")
+                : `<p class="trainer-placeholder">이 트레이너에 대한 후기는 준비 중입니다.</p>`
+            }
+          </div>
+        </div>
+      </div>`
+    ).join("");
+
+    tabsEl.querySelectorAll(".pricing-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        tabsEl.querySelectorAll(".pricing-tab").forEach((t) => t.setAttribute("aria-selected", "false"));
+        tab.setAttribute("aria-selected", "true");
+        detailEl.querySelectorAll(".trainer-panel").forEach((p) => (p.hidden = true));
+        $(`trainer-panel-${tab.dataset.target}`).hidden = false;
       });
     });
   }
