@@ -871,9 +871,9 @@ h1, h2, h3 {
 .schedule-panel-grid { display: flex; gap: var(--sp-6); flex-wrap: wrap; align-items: flex-start; }
 .schedule-info { flex: 1 1 260px; min-width: 220px; }
 .schedule-motto {
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-size: 1.15rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
   color: var(--accent-strong);
   margin: 0 0 var(--sp-3);
 }
