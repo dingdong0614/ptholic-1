@@ -134,8 +134,8 @@
     const trainerPreviewEl = $("trainerPreviewGrid");
     if (trainerPreviewEl) {
       trainerPreviewEl.innerHTML = TRAINERS.map(
-        (t) => `
-        <a class="trainer-preview-card" href="trainers.html">
+        (t, i) => `
+        <a class="trainer-preview-card" href="trainers.html#trainer-${i}">
           <div class="trainer-preview-photo">
             <img src="${t.photo}" alt="${t.name} 트레이너" loading="lazy" />
           </div>
@@ -221,14 +221,26 @@
       </div>`
     ).join("");
 
+    function activateTrainer(index) {
+      const tab = document.getElementById(`trainer-tab-${index}`);
+      const panel = document.getElementById(`trainer-panel-${index}`);
+      if (!tab || !panel) return;
+      tabsEl.querySelectorAll(".pricing-tab").forEach((t) => t.setAttribute("aria-selected", "false"));
+      detailEl.querySelectorAll(".trainer-panel").forEach((p) => (p.hidden = true));
+      tab.setAttribute("aria-selected", "true");
+      panel.hidden = false;
+    }
+
     tabsEl.querySelectorAll(".pricing-tab").forEach((tab) => {
-      tab.addEventListener("click", () => {
-        tabsEl.querySelectorAll(".pricing-tab").forEach((t) => t.setAttribute("aria-selected", "false"));
-        tab.setAttribute("aria-selected", "true");
-        detailEl.querySelectorAll(".trainer-panel").forEach((p) => (p.hidden = true));
-        $(`trainer-panel-${tab.dataset.target}`).hidden = false;
-      });
+      tab.addEventListener("click", () => activateTrainer(tab.dataset.target));
     });
+
+    // 홈 페이지 트레이너 미리보기 카드에서 trainers.html#trainer-2 처럼 들어오면
+    // 항상 첫 번째 트레이너가 아니라 그 트레이너 탭을 먼저 보여줍니다.
+    const hashMatch = location.hash.match(/^#trainer-(\d+)$/);
+    if (hashMatch && TRAINERS[Number(hashMatch[1])]) {
+      activateTrainer(Number(hashMatch[1]));
+    }
   }
 
   /* ---------------- process ---------------- */

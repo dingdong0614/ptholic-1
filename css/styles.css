@@ -770,6 +770,7 @@ h1, h2, h3 {
 
 .trainer-panel-grid {
   display: flex;
+  align-items: flex-start;
   gap: var(--sp-6);
   flex-wrap: wrap;
 }
