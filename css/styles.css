@@ -808,10 +808,9 @@ h1, h2, h3 {
 .trainer-teaching { color: var(--text-muted); font-size: 0.92rem; line-height: 1.75; margin: 0 0 var(--sp-2); }
 
 .trainer-section-title {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
   color: var(--accent-strong);
   margin: var(--sp-5) 0 var(--sp-2);
 }
