@@ -410,9 +410,22 @@ h1, h2, h3 {
   to { transform: rotate(360deg); }
 }
 
+@media (max-width: 760px) {
+  .hero { padding-top: var(--sp-6); }
+  .congestion-widget { margin-bottom: var(--sp-5); }
+}
+
 @media (max-width: 480px) {
-  .congestion-widget { width: 100%; }
-  .congestion-meta { margin-left: auto; }
+  .congestion-widget { width: 100%; flex-wrap: wrap; row-gap: var(--sp-2); }
+  .congestion-meta {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    padding-top: var(--sp-2);
+    border-top: 1px solid var(--line);
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 /* ---------------- page hero (subpages) ---------------- */
