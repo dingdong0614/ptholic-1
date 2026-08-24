@@ -1,9 +1,23 @@
 # 원본 네이버 블로그 캡처 이미지 (사진 추출용 소스 자료, 사이트에서는 미사용)
 /*.png
-!/favicon.png
-!/apple-touch-icon.png
+!/public/**/*.png
 
 # Vercel CLI 로컬 설정 및 환경변수 (비밀 키 포함, 절대 커밋 금지)
 .vercel
 .env
 .env.*
+
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# misc
+.DS_Store
+npm-debug.log*

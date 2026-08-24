@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "app/api/admin/[key]/route.ts"
+        ],
+        "createdAt": "2026-08-24T09:49:40.398Z",
+        "reason": "관리자 전용 내부 툴 페이지(noindex, 비밀키로만 접근) — 원본 사이트 관리자 페이지 디자인을 1:1 그대로 포팅함. 상태 버튼(한산/보통/혼잡/마감)의 border-left는 공개 브랜드 페이지가 아닌 색상 상태표시 목적의 기존 UI, 이번 makeover의 디자인 대상이 아님."
+      },
+      {
+        "rule": "codex-grid-background",
+        "value": "*",
+        "files": [
+          "app/globals.css"
+        ],
+        "createdAt": "2026-08-24T09:49:40.501Z",
+        "reason": "user confirmed: AskUserQuestion에서 기존 '산업용 콘크리트 다크 + 세이프티 오렌지 + 블루프린트 그리드' 컨셉을 고도화하는 방향으로 명시적으로 선택함. .blueprint-grid는 설계도면(blueprint) 모티프를 의도적으로 표현하는 요소로, 훅 설명에서도 blueprint 표면은 허용 예외로 명시함."
+      }
+    ]
+  }
+}
