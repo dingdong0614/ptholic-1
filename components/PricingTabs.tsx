@@ -1,67 +1,69 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { PRICING } from "@/data/pricing";
 import { won } from "@/lib/format";
+import { RevealOnScroll } from "@/components/Reveal";
 
+/**
+ * 가격표 (data/pricing.ts). 탭으로 숨기지 않고 세 종류를 한 번에 보여준다.
+ * 회당/월 환산가는 표의 금액을 횟수로 나눈 계산값(원 단위 반올림).
+ */
 export default function PricingTabs() {
-  const [active, setActive] = useState<string>(PRICING.tables[0].id);
-  const table = PRICING.tables.find((t) => t.id === active)!;
-
   return (
     <div>
-      <div role="tablist" aria-label="가격표 종류" className="flex flex-wrap gap-2 border-b border-line pb-4">
-        {PRICING.tables.map((t) => (
-          <button
-            key={t.id}
-            role="tab"
-            aria-selected={active === t.id}
-            onClick={() => setActive(t.id)}
-            className={`border px-5 py-2.5 font-mono text-sm transition-colors ${
-              active === t.id
-                ? "border-accent bg-accent text-white"
-                : "border-line-strong text-text-muted hover:border-accent-strong hover:text-text"
-            }`}
-          >
-            {t.label}
-          </button>
-        ))}
+      <div className="grid gap-4 lg:grid-cols-3">
+        {PRICING.tables.map((t, ti) => {
+          const perLabel = t.plans[0].unitLabel === "개월" ? "월" : "회당";
+          return (
+            <RevealOnScroll key={t.id} delay={ti * 0.05}>
+              <section aria-labelledby={`price-${t.id}`} className={`card h-full p-6 md:p-7 ${ti === 0 ? "border-accent/50" : ""}`}>
+                <div className="flex items-baseline justify-between gap-3">
+                  <h2 id={`price-${t.id}`} className="text-[24px]">
+                    {t.label}
+                  </h2>
+                  <span className="text-[14px] text-text-faint">{t.desc}</span>
+                </div>
+                <table className="mt-5 w-full border-collapse text-left">
+                  <caption className="sr-only">{t.label} 가격표</caption>
+                  <thead>
+                    <tr className="text-[13px] text-text-faint">
+                      <th scope="col" className="pb-2 font-medium">
+                        구성
+                      </th>
+                      <th scope="col" className="pb-2 text-right font-medium">
+                        금액
+                      </th>
+                      <th scope="col" className="pb-2 text-right font-medium">
+                        {perLabel}
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {t.plans.map((p) => (
+                      <tr key={p.sessions} className="border-t border-line">
+                        <th scope="row" className="py-3.5 text-[16px] font-semibold">
+                          {p.sessions}
+                          {p.unitLabel ?? "회"}
+                        </th>
+                        <td className="num py-3.5 text-right text-[19px]">{won(p.price)}</td>
+                        <td className="py-3.5 text-right text-[14px] text-text-muted">
+                          {won(Math.round(p.price / p.sessions))}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </section>
+            </RevealOnScroll>
+          );
+        })}
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={table.id}
-          role="tabpanel"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-          className="pt-8"
-        >
-          <p className="text-text-muted">{table.desc}</p>
-          <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {table.plans.map((p) => (
-              <div key={p.sessions} className="border border-line bg-surface p-6">
-                <span className="font-mono text-sm text-text-muted">
-                  {p.sessions}
-                  {p.unitLabel ?? "회"}
-                </span>
-                <p className="mt-2 font-display text-2xl">{won(p.price)}</p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-      </AnimatePresence>
-
-      <p className="mt-8 font-mono text-xs text-text-faint">{PRICING.vatNote}</p>
-
-      <div className="mt-4 flex flex-wrap gap-3">
+      <div className="mt-6 flex flex-wrap items-center gap-3">
         {PRICING.extras.map((e) => (
-          <span key={e.label} className="border border-line-strong px-4 py-2 text-sm text-text-muted">
+          <span key={e.label} className="rounded-full border border-line-strong px-4 py-2 text-[15px] text-text-muted">
             {e.label} <strong className="text-text">{e.value}</strong>
           </span>
         ))}
+        <span className="text-[14px] text-text-faint">{PRICING.vatNote}</span>
       </div>
     </div>
   );

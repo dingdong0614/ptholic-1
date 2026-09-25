@@ -5,6 +5,7 @@ import { SITE_CONFIG } from "@/data/site";
 export const metadata: Metadata = {
   title: "개인정보처리방침",
   description: "피티홀릭짐 개인정보처리방침. 수집 항목, 이용 목적, 보유 기간, 정보주체의 권리 안내.",
+  alternates: { canonical: "/privacy" },
 };
 
 const SECTIONS = [
@@ -54,7 +55,7 @@ const SECTIONS = [
       <>
         <p>회사는 원활한 문의 접수 및 처리를 위해 아래와 같이 개인정보 처리 업무를 위탁하고 있습니다.</p>
         <ul className="mt-3 list-disc space-y-1 pl-5">
-          <li>수탁업체: Web3Forms — 위탁업무 내용: 문의 폼 데이터 전송 및 이메일 알림</li>
+          <li>수탁업체: Web3Forms / 위탁업무 내용: 문의 폼 데이터 전송 및 이메일 알림</li>
         </ul>
       </>
     ),
@@ -113,7 +114,7 @@ export default function PrivacyPage() {
       />
       <section className="py-16 md:py-24">
         <div className="wrap max-w-3xl">
-          <p className="border border-line-strong bg-surface p-5 text-sm text-text-muted">
+          <p className="rounded-[14px] border border-line-strong bg-surface p-5 text-sm text-text-muted">
             본 페이지는 doion이 정리한 체크리스트를 기반으로 작성된 초안이며, 법적 자문이 아닙니다. 사업자등록번호,
             개인정보 보호책임자 성명·직통 연락처 등 일부 항목은 대표 확인 후 최종 반영이 필요합니다. 최종 게시
             전 전문가 검토를 권장합니다.
@@ -122,8 +123,8 @@ export default function PrivacyPage() {
           <div className="mt-10 space-y-10">
             {SECTIONS.map((s) => (
               <div key={s.title}>
-                <h2 className="font-display text-xl">{s.title}</h2>
-                <div className="mt-3 text-sm leading-relaxed text-text-muted">{s.body}</div>
+                <h2 className="font-display text-[22px]">{s.title}</h2>
+                <div className="mt-3 text-[16px] leading-relaxed text-text-muted">{s.body}</div>
               </div>
             ))}
           </div>

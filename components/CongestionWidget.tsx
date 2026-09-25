@@ -71,7 +71,7 @@ export default function CongestionWidget({ compact = false }: { compact?: boolea
 
   if (compact) {
     return (
-      <div className="flex items-center gap-2 border border-line-strong px-3 py-2 font-mono text-xs">
+      <div className="inline-flex items-center gap-2 rounded-full border border-line-strong px-3 py-2 text-[13px] font-medium">
         <span className={`relative h-2 w-2 rounded-full ${LEVEL_COLOR[level]}`}>
           <AnimatePresence>
             {flash && (
@@ -85,14 +85,14 @@ export default function CongestionWidget({ compact = false }: { compact?: boolea
             )}
           </AnimatePresence>
         </span>
-        <span className="text-text-muted">지금</span>
-        <span className="text-text">{data.status}</span>
+        <span className="text-text-muted">지금 혼잡도</span>
+        <span className="font-bold text-text">{data.status}</span>
       </div>
     );
   }
 
   return (
-    <div className="inline-flex items-center gap-3 border border-line-strong bg-surface/80 px-4 py-3 backdrop-blur-sm">
+    <div className="inline-flex items-center gap-3 rounded-full border border-line-strong bg-surface py-2 pl-4 pr-2">
       <span className={`relative h-2.5 w-2.5 rounded-full ${LEVEL_COLOR[level]}`}>
         <AnimatePresence>
           {flash && (
@@ -107,16 +107,16 @@ export default function CongestionWidget({ compact = false }: { compact?: boolea
         </AnimatePresence>
       </span>
       <span className="flex flex-col leading-tight">
-        <span className="font-mono text-[10px] tracking-[0.14em] text-accent-strong">LIVE · 지금 혼잡도</span>
-        <span className="font-display text-base">{data.status}</span>
+        <span className="text-[12px] font-semibold text-text-muted">지금 혼잡도</span>
+        <span className="text-[16px] font-bold">{data.status}</span>
       </span>
-      <span className="ml-2 flex items-center gap-2 border-l border-line-strong pl-3 font-mono text-[11px] text-text-faint">
+      <span className="ml-1 flex items-center gap-1 border-l border-line-strong pl-3 text-[12px] text-text-faint">
         {fmtTime(data.updatedAt)} 기준
         <button
           type="button"
           onClick={refresh}
           aria-label="혼잡도 새로고침"
-          className={`text-text-muted transition-transform hover:text-accent-strong ${loading ? "animate-spin" : ""}`}
+          className={`grid h-11 w-11 place-items-center rounded-full text-text-muted transition-colors hover:text-accent-strong ${loading ? "animate-spin" : ""}`}
         >
           <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
             <path d="M12 5V2L8 6l4 4V7c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46A7.93 7.93 0 0 0 20 13c0-4.42-3.58-8-8-8zm-6 8c0-1.01.25-1.97.7-2.8L5.24 8.74A7.93 7.93 0 0 0 4 13c0 4.42 3.58 8 8 8v3l4-4-4-4v3c-3.31 0-6-2.69-6-6z" />

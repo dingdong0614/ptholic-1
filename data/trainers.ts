@@ -14,6 +14,7 @@ export type Trainer = {
 
 export const SCHEDULE_DAYS = ["월", "화", "수", "목", "금", "토"] as const;
 
+// reviews: 네이버 블로그 후기 게시물 원문에서 해당 트레이너 이름이 언급된 후기만 그대로 옮김.
 // 경력·자격사항은 네이버 블로그 트레이너 소개 게시물 원문을 그대로 옮긴 것입니다.
 export const TRAINERS: Trainer[] = [
   {
@@ -25,13 +26,15 @@ export const TRAINERS: Trainer[] = [
     specialty: "교정운동 · 재활 필라테스 전문",
     photo: "/assets/img/trainers/kwon-youngmin.jpg",
     videoUrl: null,
-    reviews: [],
+    reviews: [
+      "권영민 선생님께 3개월 배우면서 다시 운동 시작할 수 있어 매우 좋았습니다! 시작 전에 전반적인 상담도 잘해주셔서 목표 설정하기 좋고 자세 및 개인 운동 스케줄까지 하나하나 세심하게 챙겨주셔서 꼼꼼하게 운동할 수 있었습니다!",
+    ],
     schedule: { 월: "", 화: "", 수: "", 목: "", 금: "", 토: "" },
     career: [
       "수원공업고등학교 보디빌딩 선수부",
       "K7 휘트니스 트레이너",
       "BODY ONE 휘트니스 트레이너",
-      "잠오브캐슬 휘트니스 트레이너",
+      "짐오브캐슬 휘트니스 트레이너",
       "휘트니스 클럽 S 트레이너",
       "호텔신라 삼성전자 16라인 휘트니스 트레이너",
       "앙그리바디짐 트레이너",

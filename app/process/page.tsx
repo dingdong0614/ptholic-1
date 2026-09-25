@@ -6,30 +6,32 @@ import SectionHeading from "@/components/SectionHeading";
 
 export const metadata: Metadata = {
   title: "진행방식 · 시간표",
-  description: "피티홀릭짐 PT 진행방식과 트레이너별 가능 시간표를 확인하세요. 체력테스트, 식사 관리, 해부학 기반 자세 코칭. 성균관대역 도보 3분.",
+  description:
+    "피티홀릭짐 PT 진행방식과 트레이너별 시간표. 체력테스트, 생활 패턴 맞춤 식사 관리, 해부학 기반 자세 코칭. 성균관대역 도보 3분 수원 율전동 PT.",
+  alternates: { canonical: "/process" },
 };
 
 export default function ProcessPage() {
   return (
     <>
       <PageHero
+        photo={{ src: "/assets/img/facility/facility-5.jpg" }}
         crumb="진행방식"
-        title="피티홀릭짐이 운동을 진행하는 방식"
-        desc="체력테스트부터 해부학 기반 자세 코칭까지, 트레이너별 가능 시간도 함께 확인하세요."
+        title="첫 수업은 체력테스트부터"
+        desc="지금 몸 상태를 먼저 재고, 그 결과로 식사 방향과 자세 교정 순서를 정해요."
       />
 
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-20">
         <div className="wrap">
           <ProcessSteps />
         </div>
       </section>
 
-      <section className="border-t border-line bg-bg-alt py-16 md:py-24">
+      <section className="section border-t border-line bg-bg-alt">
         <div className="wrap">
           <SectionHeading
-            eyebrow="SCHEDULE"
             title="트레이너별 시간표"
-            desc="트레이너를 선택하면 요일별 가능 시간을 확인할 수 있습니다."
+            desc="트레이너를 고르면 수업 스타일과 요일별 가능 시간을 볼 수 있어요."
           />
           <div className="mt-10">
             <ScheduleTabs />
