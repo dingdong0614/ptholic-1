@@ -70,8 +70,8 @@ export default function HomePage() {
               <span className="inline-block rounded bg-accent px-2 py-0.5 text-[13px] font-bold text-accent-ink">
                 BEST 특가
               </span>
-              <span className="mt-3 block whitespace-nowrap font-display text-[clamp(22px,6.4vw,32px)] leading-[1.2]">{FLYER.line1}</span>
-              <span className="mt-1 block whitespace-nowrap font-display text-[clamp(22px,6.4vw,32px)] leading-[1.2] text-accent">{FLYER.line2}</span>
+              <span className="mt-3 block num whitespace-nowrap text-[clamp(22px,6vw,30px)] leading-[1.25]">{FLYER.line1}</span>
+              <span className="mt-1 block num whitespace-nowrap text-[clamp(22px,6vw,30px)] leading-[1.25] text-accent">{FLYER.line2}</span>
               <span className="mt-3 block text-[13px] text-text-muted">{PROMOTION_NOTE}</span>
             </Link>
           </div>

@@ -105,17 +105,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* JS 가능 환경에서만 스크롤 리빌을 숨김 처리 (JS 없으면 전부 보임) */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap"
-          rel="stylesheet"
-        />
+                        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
         <link
           rel="stylesheet"
           crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.css"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
         />
         <script
           type="application/ld+json"

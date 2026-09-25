@@ -95,7 +95,7 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} noValidate className="card relative p-6 md:p-9">
-      <h2 className="font-display text-[24px] font-black">문의 남기기</h2>
+      <h2 className="text-[24px] font-bold">문의 남기기</h2>
       <p className="mt-1 text-[15px] text-text-muted">남겨 주시면 확인 후 연락드립니다.</p>
 
       {/* honeypot (스크린리더·키보드에서도 숨김) */}

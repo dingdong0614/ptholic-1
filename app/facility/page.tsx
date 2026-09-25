@@ -48,7 +48,7 @@ export default function FacilityPage() {
           <div className="mt-20 grid gap-10 md:mt-28 lg:grid-cols-[1fr_1fr] lg:gap-14">
             <div className="notice p-6 md:p-9">
               <p className="text-[13px] font-semibold text-[#6b6862]">블로그 공지 · {UPGRADE_NOTICE.date}</p>
-              <h2 className="mt-1 font-display text-[26px] !text-[#1b1b1c] md:text-[32px]">{UPGRADE_NOTICE.title}</h2>
+              <h2 className="mt-1 text-[26px] !text-[#1b1b1c] md:text-[32px]">{UPGRADE_NOTICE.title}</h2>
               <ol className="mt-5 list-decimal space-y-2.5 pl-5 text-[16px] leading-relaxed">
                 {UPGRADE_NOTICE.items.map((it) => (
                   <li key={it}>{it}</li>
@@ -94,7 +94,7 @@ export default function FacilityPage() {
             <dl className="divide-y divide-line border-y border-line">
               {EQUIPMENT_ZONES.map((z) => (
                 <div key={z.name} className="grid gap-2 py-6 md:grid-cols-[180px_1fr] md:gap-6">
-                  <dt className="font-display text-[20px] font-black text-accent-strong">{z.name}</dt>
+                  <dt className="text-[20px] font-bold text-accent-strong">{z.name}</dt>
                   <dd className="text-[16px] leading-relaxed text-text-muted">{z.desc}</dd>
                 </div>
               ))}

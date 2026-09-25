@@ -3,7 +3,7 @@
 /* ------------------------------------------------------------------
    피티홀릭짐 · 2026-09 리워크
    블랙/차콜 레이어 + 브랜드 세이프티 오렌지(#ff5722) 한 가지 강조색.
-   제목: Black Han Sans (매장 전단·블로그 배너와 같은 굵은 고딕) / 본문·UI: Pretendard
+   서체: Pretendard Variable 한 종. 히어로 제목만 800, 나머지 제목 700, 숫자는 tabular-nums
    간격 8pt, 모션은 transform/opacity만 240ms 전후.
 ------------------------------------------------------------------- */
 
@@ -25,9 +25,9 @@
   --color-amber: #ffb84d;
   --color-red: #ff4d4d;
 
-  --font-display: "Black Han Sans", "Pretendard", sans-serif;
-  --font-body: "Pretendard", "Pretendard Variable", -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: "Pretendard", "Pretendard Variable", -apple-system, sans-serif;
+  --font-display: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "Pretendard Variable", "Pretendard", -apple-system, sans-serif;
 
   --radius-card: 14px;
   --content-max: 1200px;
@@ -35,9 +35,9 @@
 }
 
 :root {
-  --t-hero: clamp(46px, 8vw, 120px);
-  --t-h1: clamp(34px, 4.6vw, 60px);
-  --t-h2: clamp(28px, 3.4vw, 44px);
+  --t-hero: clamp(40px, 6.6vw, 96px);
+  --t-h1: clamp(30px, 4vw, 52px);
+  --t-h2: clamp(24px, 2.8vw, 36px);
   --section-y: clamp(72px, 10vw, 128px);
   --dur-fast: 160ms;
   --dur: 240ms;
@@ -69,8 +69,11 @@ body {
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 16px;
+  font-weight: 400;
   line-height: 1.7;
+  letter-spacing: -0.005em;
+  font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
   word-break: keep-all;
@@ -79,7 +82,7 @@ body {
 
 @media (min-width: 1024px) {
   body {
-    font-size: 18px;
+    font-size: 17px;
   }
 }
 
@@ -93,9 +96,9 @@ h2,
 h3,
 h4 {
   font-family: var(--font-display);
-  font-weight: 400;
-  letter-spacing: -0.01em;
-  line-height: 1.18;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
   margin: 0;
   color: var(--color-text);
   word-break: keep-all;
@@ -126,13 +129,14 @@ li {
 
 .t-hero {
   font-size: var(--t-hero);
-  line-height: 1.04;
-  letter-spacing: -0.02em;
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
 }
 .t-h1 {
   font-size: var(--t-h1);
-  line-height: 1.1;
-  letter-spacing: -0.015em;
+  line-height: 1.18;
+  letter-spacing: -0.035em;
 }
 .t-h2 {
   font-size: var(--t-h2);
@@ -141,8 +145,8 @@ li {
 
 .eyebrow {
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 700;
+  font-size: 13px;
+  font-weight: 500;
   color: var(--color-accent-strong);
 }
 
@@ -374,6 +378,3 @@ a.card:hover,
     font-weight: 800;
   }
 }
-
-/* Black Han Sans는 굵기가 하나뿐이라 font-black 등을 주면 브라우저가 가짜 굵게를 만들어 글자가 번진다. 굵기 합성을 끈다. */
-.font-display { font-synthesis: none; }

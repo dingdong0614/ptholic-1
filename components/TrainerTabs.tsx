@@ -64,7 +64,7 @@ export default function TrainerTabs() {
 
         <div>
           <h2 className="t-h1">{t.name}</h2>
-          <p className="mt-3 font-display text-[20px] font-bold text-text-muted md:text-[24px]">&ldquo;{t.tagline}&rdquo;</p>
+          <p className="mt-3 text-[20px] font-bold text-text-muted md:text-[24px]">&ldquo;{t.tagline}&rdquo;</p>
           <p className="mt-6 max-w-2xl leading-relaxed text-text-muted">{t.teachingStyle}</p>
 
           <div className="mt-10 grid gap-8 lg:grid-cols-2">

@@ -123,7 +123,7 @@ export default function PrivacyPage() {
           <div className="mt-10 space-y-10">
             {SECTIONS.map((s) => (
               <div key={s.title}>
-                <h2 className="font-display text-[22px]">{s.title}</h2>
+                <h2 className="text-[22px]">{s.title}</h2>
                 <div className="mt-3 text-[16px] leading-relaxed text-text-muted">{s.body}</div>
               </div>
             ))}

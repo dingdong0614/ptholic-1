@@ -45,7 +45,7 @@ export default function ScheduleTabs() {
         className="grid gap-8 pt-8 md:grid-cols-[1fr_1.2fr] md:gap-12"
       >
         <div>
-          <p className="font-display text-[20px] font-bold md:text-[24px]">&ldquo;{t.tagline}&rdquo;</p>
+          <p className="text-[20px] font-bold md:text-[24px]">&ldquo;{t.tagline}&rdquo;</p>
           <p className="mt-4 text-[16px] leading-relaxed text-text-muted">{t.teachingStyle}</p>
         </div>
         <table className="w-full border-collapse text-[16px]">

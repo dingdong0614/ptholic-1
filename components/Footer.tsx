@@ -20,7 +20,7 @@ export default function Footer() {
     <footer className="border-t border-line bg-bg-alt">
       <div className="wrap grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <p className="font-display text-2xl font-black">피티홀릭짐</p>
+          <p className="text-2xl font-bold">피티홀릭짐</p>
           <p className="mt-2 text-[15px] text-text-muted">수원 율전동 1:1 PT 전문 · 성균관대역 도보 3분</p>
           <dl className="mt-6 space-y-2 text-[15px]">
             <div className="flex gap-3">

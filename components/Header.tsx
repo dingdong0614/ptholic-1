@@ -45,10 +45,10 @@ export default function Header() {
     >
       <div className="wrap flex h-16 items-center justify-between gap-4">
         <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="피티홀릭짐 홈">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-accent text-[12px] font-black tracking-tight text-accent-ink">
+          <span className="grid h-8 w-8 place-items-center rounded-md bg-accent text-[12px] font-bold tracking-tight text-accent-ink">
             PH
           </span>
-          <span className="font-display text-[19px] font-black tracking-tight">피티홀릭짐</span>
+          <span className="text-[19px] font-bold tracking-tight">피티홀릭짐</span>
         </Link>
 
         <nav aria-label="주요 메뉴" className="hidden items-center gap-1 lg:flex">

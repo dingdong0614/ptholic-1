@@ -5,7 +5,7 @@ import { useFinePointer, usePrefersReducedMotion } from "@/lib/use-media";
 
 /**
  * 타겟팅(crosshair) 커스텀 커서. "정밀함" 컨셉에 맞춘 인터랙션.
- * 데스크톱(fine pointer)에서만 동작 — 터치 기기에서는 렌더링하지 않음.
+ * 데스크톱(fine pointer)에서만 동작 터치 기기에서는 렌더링하지 않음.
  */
 export default function CustomCursor() {
   const finePointer = useFinePointer();

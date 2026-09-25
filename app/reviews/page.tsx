@@ -25,7 +25,7 @@ export default function ReviewsPage() {
         <div className="wrap">
           <RevealOnScroll>
             <figure className="card p-7 md:p-12">
-              <blockquote className="max-w-4xl font-display text-[24px] font-bold leading-[1.5] md:text-[34px]">
+              <blockquote className="max-w-4xl text-[22px] font-semibold leading-[1.5] tracking-[-0.02em] md:text-[30px]">
                 &ldquo;{first.quote}&rdquo;
               </blockquote>
               <figcaption className="mt-8 text-[15px] text-text-faint">{first.source}</figcaption>

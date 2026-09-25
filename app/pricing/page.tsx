@@ -49,7 +49,7 @@ export default function PricingPage() {
 
           <div className="card mt-14 flex flex-col gap-5 p-6 md:flex-row md:items-center md:justify-between md:p-8">
             <div>
-              <p className="font-display text-[22px] font-black md:text-[26px]">어떤 구성이 맞을지 모르겠다면</p>
+              <p className="text-[22px] font-bold md:text-[26px]">어떤 구성이 맞을지 모르겠다면</p>
               <p className="mt-1 text-text-muted">체력테스트 후 목표와 일정에 맞춰 추천해 드려요. {SITE_CONFIG.booking.note}</p>
             </div>
             <a
