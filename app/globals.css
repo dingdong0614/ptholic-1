@@ -374,3 +374,6 @@ a.card:hover,
     font-weight: 800;
   }
 }
+
+/* Black Han Sans는 굵기가 하나뿐이라 font-black 등을 주면 브라우저가 가짜 굵게를 만들어 글자가 번진다. 굵기 합성을 끈다. */
+.font-display { font-synthesis: none; }
