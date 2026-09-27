@@ -10,6 +10,7 @@
  */
 import { NextRequest } from "next/server";
 import crypto from "crypto";
+import { rateLimit } from "../../../../lib/ratelimit";
 
 function safeEqual(a: string, b: string) {
   const ah = crypto.createHash("sha256").update(String(a)).digest();
@@ -195,7 +196,11 @@ function renderPage(adminKey: string) {
 </html>`;
 }
 
-export async function GET(_req: NextRequest, ctx: { params: Promise<{ key: string }> }) {
+export async function GET(req: NextRequest, ctx: { params: Promise<{ key: string }> }) {
+  // 관리자 URL 키 무차별 대입 방지: IP당 10분 30회
+  const rl = rateLimit(req, { name: "admin-page", limit: 30, windowMs: 10 * 60_000 });
+  if (!rl.ok) return new Response("Too Many Requests", { status: 429, headers: { "Retry-After": String(rl.retryAfter) } });
+
   const { key } = await ctx.params;
   const adminKey = process.env.ADMIN_KEY;
 

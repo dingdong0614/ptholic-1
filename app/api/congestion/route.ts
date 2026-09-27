@@ -7,6 +7,7 @@
  * 자동 주입되는 KV_REST_API_URL / KV_REST_API_TOKEN 환경변수 사용).
  */
 import { NextRequest, NextResponse } from "next/server";
+import { rateLimit } from "../../../lib/ratelimit";
 
 const KV_KEY = "gym:congestion";
 const ALLOWED_STATUSES = ["한산", "보통", "혼잡", "마감"] as const;
@@ -58,6 +59,10 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  // 관리자 키 무차별 대입 방지: IP당 10분 20회
+  const rl = rateLimit(req, { name: "congestion", limit: 20, windowMs: 10 * 60_000 });
+  if (!rl.ok) return NextResponse.json({ error: "요청이 너무 많습니다. 잠시 후 다시 시도해 주세요." }, { status: 429, headers: { "Retry-After": String(rl.retryAfter), "Cache-Control": "no-store" } });
+
   const adminKey = req.headers.get("x-admin-key");
   if (!process.env.ADMIN_KEY || adminKey !== process.env.ADMIN_KEY) {
     return NextResponse.json({ error: "인증 실패" }, { status: 401, headers: { "Cache-Control": "no-store" } });
