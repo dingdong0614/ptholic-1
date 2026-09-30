@@ -25,6 +25,7 @@ export default function PageHero({
             src={photo.src}
             alt=""
             decoding="async"
+            fetchPriority="high"
             className="hero-img"
             style={{ objectPosition: photo.position ?? "center" }}
           />
@@ -33,7 +34,8 @@ export default function PageHero({
             src={photo.src}
             alt=""
             fill
-            priority
+            preload
+            fetchPriority="high"
             sizes="100vw"
             className="hero-img object-cover"
             style={{ objectPosition: photo.position ?? "center" }}

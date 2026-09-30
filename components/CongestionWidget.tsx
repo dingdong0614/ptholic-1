@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// 상태 변경 시 점 퍼짐 효과는 CSS 키프레임(globals.css .congestion-ping)으로 처리해 framer-motion 번들을 뺐다.
 
 const POLL_MS = 60000;
 const LEVELS: Record<string, "low" | "mid" | "high" | "closed"> = {
@@ -73,17 +73,13 @@ export default function CongestionWidget({ compact = false }: { compact?: boolea
     return (
       <div className="inline-flex items-center gap-2 rounded-full border border-line-strong px-3 py-2 text-[13px] font-medium">
         <span className={`relative h-2 w-2 rounded-full ${LEVEL_COLOR[level]}`}>
-          <AnimatePresence>
-            {flash && (
-              <motion.span
-                initial={{ scale: 1, opacity: 0.7 }}
-                animate={{ scale: 2.6, opacity: 0 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.9 }}
-                className={`absolute inset-0 rounded-full ${LEVEL_COLOR[level]}`}
-              />
-            )}
-          </AnimatePresence>
+          {flash && (
+            <span
+              aria-hidden="true"
+              style={{ "--ping-scale": 2.6 } as React.CSSProperties}
+              className={`congestion-ping absolute inset-0 rounded-full ${LEVEL_COLOR[level]}`}
+            />
+          )}
         </span>
         <span className="text-text-muted">지금 혼잡도</span>
         <span className="font-bold text-text">{data.status}</span>
@@ -94,17 +90,13 @@ export default function CongestionWidget({ compact = false }: { compact?: boolea
   return (
     <div className="inline-flex items-center gap-3 rounded-full border border-line-strong bg-surface py-2 pl-4 pr-2">
       <span className={`relative h-2.5 w-2.5 rounded-full ${LEVEL_COLOR[level]}`}>
-        <AnimatePresence>
-          {flash && (
-            <motion.span
-              initial={{ scale: 1, opacity: 0.7 }}
-              animate={{ scale: 3, opacity: 0 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.9 }}
-              className={`absolute inset-0 rounded-full ${LEVEL_COLOR[level]}`}
-            />
-          )}
-        </AnimatePresence>
+        {flash && (
+          <span
+            aria-hidden="true"
+            style={{ "--ping-scale": 3 } as React.CSSProperties}
+            className={`congestion-ping absolute inset-0 rounded-full ${LEVEL_COLOR[level]}`}
+          />
+        )}
       </span>
       <span className="flex flex-col leading-tight">
         <span className="text-[12px] font-semibold text-text-muted">지금 혼잡도</span>

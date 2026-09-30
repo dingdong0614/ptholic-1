@@ -44,11 +44,12 @@ export default function Header() {
       }`}
     >
       <div className="wrap flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="flex shrink-0 items-center gap-2.5" aria-label="피티홀릭짐 홈">
-          <span className="grid h-8 w-8 place-items-center rounded-md bg-accent text-[12px] font-bold tracking-tight text-accent-ink">
+        <Link href="/" className="flex shrink-0 items-center gap-2.5">
+          <span aria-hidden="true" className="grid h-8 w-8 place-items-center rounded-md bg-accent text-[12px] font-bold tracking-tight text-accent-ink">
             PH
           </span>
           <span className="text-[19px] font-bold tracking-tight">피티홀릭짐</span>
+          <span className="sr-only"> 홈</span>
         </Link>
 
         <nav aria-label="주요 메뉴" className="hidden items-center gap-1 lg:flex">
@@ -81,7 +82,7 @@ export default function Header() {
           aria-expanded={open}
           aria-controls="mobileNav"
           onClick={() => setOpen((v) => !v)}
-          className="relative -mr-2 h-11 w-11 shrink-0 lg:hidden"
+          className="relative -mr-2.5 h-12 w-12 shrink-0 lg:hidden"
         >
           <span className="sr-only">{open ? "메뉴 닫기" : "메뉴 열기"}</span>
           <span

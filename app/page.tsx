@@ -32,10 +32,11 @@ export default function HomePage() {
       <section className="hero-photo -mt-16 min-h-[640px] pt-16 md:min-h-[88vh]">
         <div className="hero-img grid grid-cols-1 md:grid-cols-2" aria-hidden="true">
           <div className="relative">
-            <Image src={P["facility-3"].src} alt="" fill priority sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
+            <Image src={P["facility-3"].src} alt="" fill preload fetchPriority="high" sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
           </div>
           <div className="relative hidden md:block">
-            <Image src={P["facility-1"].src} alt="" fill priority sizes="50vw" className="object-cover" />
+            {/* 데스크톱 전용 사진(모바일은 display:none): 모바일에서 받지 않도록 지연 로딩. 데스크톱 LCP는 왼쪽 사진이 담당 */}
+            <Image src={P["facility-1"].src} alt="" fill loading="lazy" sizes="50vw" className="object-cover" />
           </div>
         </div>
         <p className="sr-only">피티홀릭짐 실제 매장 내부 사진: 프리웨이트존과 케틀벨이 놓인 웨이트존 입구</p>
@@ -66,7 +67,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <Link href="/pricing" className="flyer block w-full max-w-[400px] p-5 md:p-6" aria-label="이달 특가 자세히 보기">
+            <Link href="/pricing" className="flyer block w-full max-w-[400px] p-5 md:p-6">
               <span className="inline-block rounded bg-accent px-2 py-0.5 text-[13px] font-bold text-accent-ink">
                 BEST 특가
               </span>
@@ -137,7 +138,7 @@ export default function HomePage() {
               </RevealOnScroll>
             ))}
           </ul>
-          <Link href="/trainers" className="mt-6 inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-text-muted hover:text-accent-strong">
+          <Link href="/trainers" className="mt-6 inline-flex min-h-[48px] items-center gap-1.5 font-semibold text-text-muted hover:text-accent-strong">
             경력·자격 원문 전체 <Icon name="arrow" size={16} />
           </Link>
         </div>
@@ -249,7 +250,7 @@ export default function HomePage() {
                     <li key={it}>{it}</li>
                   ))}
                 </ol>
-                <Link href="/facility" className="mt-5 inline-flex min-h-[44px] items-center gap-1.5 text-[15px] font-bold text-[#b8350c]">
+                <Link href="/facility" className="mt-5 inline-flex min-h-[48px] items-center gap-1.5 text-[15px] font-bold text-[#b8350c]">
                   시설 사진 더 보기 <Icon name="arrow" size={16} />
                 </Link>
               </div>
@@ -296,7 +297,7 @@ export default function HomePage() {
               남긴 말
             </h2>
             <p className="mt-4 text-text-muted">네이버 예약 리뷰와 회원이 보낸 메시지에서 문장 그대로 옮겼어요.</p>
-            <Link href="/reviews" className="mt-6 inline-flex min-h-[44px] items-center gap-1.5 font-semibold text-text-muted hover:text-accent-strong">
+            <Link href="/reviews" className="mt-6 inline-flex min-h-[48px] items-center gap-1.5 font-semibold text-text-muted hover:text-accent-strong">
               후기 전체 <Icon name="arrow" size={16} />
             </Link>
           </div>

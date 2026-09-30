@@ -1,4 +1,6 @@
 import type { Metadata, Viewport } from "next";
+// Pretendard Variable v1.3.9 동적 서브셋을 자체 호스팅(외부 CDN 렌더 차단 제거, 글꼴 동일)
+import "./fonts/pretendard/pretendardvariable-dynamic-subset.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -6,8 +8,7 @@ import ScrollProvider from "@/components/ScrollProvider";
 import MobileActionBar from "@/components/MobileActionBar";
 import { SITE_CONFIG } from "@/data/site";
 import { PRICING } from "@/data/pricing";
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://ptholicgym.com";
+import { SITE_URL } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -105,12 +106,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         {/* JS 가능 환경에서만 스크롤 리빌을 숨김 처리 (JS 없으면 전부 보임) */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
-                        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          crossOrigin="anonymous"
-          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

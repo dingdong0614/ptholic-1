@@ -51,7 +51,7 @@ export default function Footer() {
           <ul className="mt-4 grid grid-cols-2 gap-x-4 md:grid-cols-1">
             {SITE_LINKS.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="flex min-h-[40px] items-center text-[15px] text-text-muted hover:text-text">
+                <Link href={l.href} className="flex min-h-[48px] items-center text-[15px] text-text-muted hover:text-text">
                   {l.label}
                 </Link>
               </li>
@@ -63,29 +63,29 @@ export default function Footer() {
           <p className="text-[14px] font-semibold text-text-faint">채널</p>
           <ul className="mt-4">
             <li>
-              <a href={sns.reservationUrl} target="_blank" rel="noopener" className="flex min-h-[40px] items-center text-[15px] text-text-muted hover:text-text">
+              <a href={sns.reservationUrl} target="_blank" rel="noopener" className="flex min-h-[48px] items-center text-[15px] text-text-muted hover:text-text">
                 네이버 예약
               </a>
             </li>
             <li>
-              <a href={sns.instagramUrl} target="_blank" rel="noopener" className="flex min-h-[40px] items-center text-[15px] text-text-muted hover:text-text">
+              <a href={sns.instagramUrl} target="_blank" rel="noopener" className="flex min-h-[48px] items-center text-[15px] text-text-muted hover:text-text">
                 인스타그램 {sns.instagramHandle}
               </a>
             </li>
             <li>
-              <a href={sns.blogUrl} target="_blank" rel="noopener" className="flex min-h-[40px] items-center text-[15px] text-text-muted hover:text-text">
+              <a href={sns.blogUrl} target="_blank" rel="noopener" className="flex min-h-[48px] items-center text-[15px] text-text-muted hover:text-text">
                 네이버 블로그
               </a>
             </li>
             {sns.kakaoUrl && (
               <li>
-                <a href={sns.kakaoUrl} target="_blank" rel="noopener" className="flex min-h-[40px] items-center text-[15px] text-text-muted hover:text-text">
+                <a href={sns.kakaoUrl} target="_blank" rel="noopener" className="flex min-h-[48px] items-center text-[15px] text-text-muted hover:text-text">
                   카카오톡 오픈채팅
                 </a>
               </li>
             )}
             <li>
-              <Link href="/privacy" className="flex min-h-[40px] items-center text-[15px] font-semibold text-text-muted hover:text-text">
+              <Link href="/privacy" className="flex min-h-[48px] items-center text-[15px] font-semibold text-text-muted hover:text-text">
                 개인정보처리방침
               </Link>
             </li>
