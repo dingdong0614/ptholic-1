@@ -378,6 +378,19 @@ a.card:hover,
     font-weight: 800;
   }
 
+  /* 트레이너 사진: 배경색이 제각각인 원본을 CSS로만 어두운 카드 톤에 맞춤(사진 자체는 수정하지 않음) */
+  .trainer-photo {
+    filter: brightness(0.78) contrast(1.08) saturate(0.88);
+  }
+  .trainer-tone {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(14, 14, 15, 0.5) 0%, rgba(14, 14, 15, 0) 30%, rgba(14, 14, 15, 0) 60%, rgba(26, 26, 29, 0.8) 100%),
+      radial-gradient(70% 85% at 50% 42%, rgba(14, 14, 15, 0) 40%, rgba(14, 14, 15, 0.82) 100%);
+  }
+
   /* 혼잡도 상태가 바뀔 때 점이 한 번 퍼지는 효과 (0.9s, transform/opacity만) */
   .congestion-ping {
     animation: congestion-ping 900ms cubic-bezier(0.16, 1, 0.3, 1) forwards;

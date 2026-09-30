@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import CongestionWidget from "@/components/CongestionWidget";
+import NoticeList from "@/components/NoticeList";
 import Icon from "@/components/Icon";
 import { RevealOnScroll } from "@/components/Reveal";
 import { SITE_CONFIG, FLYER, PROMOTION_NOTE, TESTIMONIALS, TIMELINE } from "@/data/site";
@@ -29,7 +30,7 @@ export default function HomePage() {
   return (
     <>
       {/* 1. 매장 실사진 풀블리드 + 전단 스티커 */}
-      <section className="hero-photo -mt-16 min-h-[640px] pt-16 md:min-h-[88vh]">
+      <section className="hero-photo -mt-16 min-h-[560px] pt-16 md:min-h-[88vh]">
         <div className="hero-img grid grid-cols-1 md:grid-cols-2" aria-hidden="true">
           <div className="relative">
             <Image src={P["facility-3"].src} alt="" fill preload fetchPriority="high" sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
@@ -41,8 +42,8 @@ export default function HomePage() {
         </div>
         <p className="sr-only">피티홀릭짐 실제 매장 내부 사진: 프리웨이트존과 케틀벨이 놓인 웨이트존 입구</p>
 
-        <div className="wrap relative flex min-h-[576px] flex-col justify-end pb-10 md:min-h-[calc(88vh-64px)] md:pb-16">
-          <div className="grid items-end gap-8 lg:grid-cols-[1fr_auto]">
+        <div className="wrap relative flex min-h-[496px] flex-col justify-end pb-7 pt-5 md:min-h-[calc(88vh-64px)] md:pb-16 md:pt-0">
+          <div className="grid items-end gap-6 md:gap-8 lg:grid-cols-[1fr_auto]">
             <div>
               <p className="text-[15px] font-semibold text-text md:text-[17px]">
                 수원 율전동 · 성균관대역 도보 3분 · 2층
@@ -67,13 +68,13 @@ export default function HomePage() {
               </div>
             </div>
 
-            <Link href="/pricing" className="flyer block w-full max-w-[400px] p-5 md:p-6">
-              <span className="inline-block rounded bg-accent px-2 py-0.5 text-[13px] font-bold text-accent-ink">
+            <Link href="/pricing" className="flyer block w-full max-w-[400px] px-4 py-3.5 md:p-6">
+              <span className="inline-block rounded bg-accent px-2 py-0.5 text-[12px] font-bold text-accent-ink md:text-[13px]">
                 BEST 특가
               </span>
-              <span className="mt-3 block num whitespace-nowrap text-[clamp(22px,6vw,30px)] leading-[1.25]">{FLYER.line1}</span>
-              <span className="mt-1 block num whitespace-nowrap text-[clamp(22px,6vw,30px)] leading-[1.25] text-accent">{FLYER.line2}</span>
-              <span className="mt-3 block text-[13px] text-text-muted">{PROMOTION_NOTE}</span>
+              <span className="mt-2 block num whitespace-nowrap text-[clamp(20px,5.3vw,30px)] leading-[1.25] md:mt-3">{FLYER.line1}</span>
+              <span className="mt-0.5 block num whitespace-nowrap text-[clamp(20px,5.3vw,30px)] leading-[1.25] text-accent md:mt-1">{FLYER.line2}</span>
+              <span className="mt-2 block text-[12px] text-text-muted md:mt-3 md:text-[13px]">{PROMOTION_NOTE}</span>
             </Link>
           </div>
         </div>
@@ -81,7 +82,7 @@ export default function HomePage() {
 
       {/* 운영 정보 띠 */}
       <div className="border-b border-line bg-bg-alt">
-        <div className="wrap flex flex-wrap items-center gap-x-8 gap-y-3 py-4 text-[15px]">
+        <div className="wrap flex flex-wrap items-center gap-x-8 gap-y-2 py-3 text-[15px] md:gap-y-3 md:py-4">
           <span>
             <span className="text-text-faint">평일</span> <strong className="num">06:00~24:00</strong>
           </span>
@@ -89,7 +90,8 @@ export default function HomePage() {
             <span className="text-text-faint">주말</span> <strong className="num">09:00~17:00</strong>
           </span>
           <span className="font-semibold">연중무휴, 추석·설날도 운영</span>
-          <span className="ml-auto hidden md:block">
+          {/* 모바일에서도 실시간 혼잡도 표시. 응답 전 자리를 미리 잡아 레이아웃 밀림 방지 */}
+          <span className="flex min-h-[38px] w-full items-center md:ml-auto md:w-auto">
             <CongestionWidget compact />
           </span>
         </div>
@@ -116,14 +118,15 @@ export default function HomePage() {
                   href={`/trainers#trainer-${i}`}
                   className="group grid h-full grid-cols-[120px_1fr] overflow-hidden rounded-[14px] border border-line bg-surface sm:block"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-[#ecebec]">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-surface">
                     <Image
                       src={t.photo}
                       alt={`${t.name} 트레이너`}
                       fill
                       sizes="(max-width: 640px) 120px, 290px"
-                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="trainer-photo object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                     />
+                    <span aria-hidden="true" className="trainer-tone" />
                   </div>
                   <div className="p-4 sm:p-6">
                     <h3 className="text-[26px] sm:text-[32px]">{t.name}</h3>
@@ -247,12 +250,9 @@ export default function HomePage() {
               <div className="notice mt-8 p-6 md:p-7">
                 <p className="text-[13px] font-semibold text-[#6b6862]">블로그 공지 · {UPGRADE_NOTICE.date}</p>
                 <p className="mt-1 text-[18px] font-bold leading-snug">{UPGRADE_NOTICE.title}</p>
-                <ol className="mt-4 list-decimal space-y-2 pl-5 text-[15px] leading-relaxed">
-                  {UPGRADE_NOTICE.items.map((it) => (
-                    <li key={it}>{it}</li>
-                  ))}
-                </ol>
-                <Link href="/facility" className="mt-5 inline-flex min-h-[48px] items-center gap-1.5 text-[15px] font-bold text-[#b8350c]">
+                {/* 모바일은 3개만 보이고 "더 보기"로 펼침 */}
+                <NoticeList items={UPGRADE_NOTICE.items} visible={3} />
+                <Link href="/facility" className="mt-2 flex w-fit md:mt-5 md:inline-flex min-h-[48px] items-center gap-1.5 text-[15px] font-bold text-[#b8350c]">
                   시설 사진 더 보기 <Icon name="arrow" size={16} />
                 </Link>
               </div>
