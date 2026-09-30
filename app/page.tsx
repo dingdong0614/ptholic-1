@@ -216,6 +216,8 @@ export default function HomePage() {
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={unsplash(STOCK.kettlebells.id, 800)}
+                  srcSet={`${unsplash(STOCK.kettlebells.id, 400)} 400w, ${unsplash(STOCK.kettlebells.id, 800)} 800w`}
+                  sizes="(max-width: 1024px) 50vw, 27vw"
                   alt={STOCK.kettlebells.alt}
                   loading="lazy"
                   decoding="async"

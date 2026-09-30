@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 // Pretendard Variable v1.3.9 동적 서브셋을 자체 호스팅(외부 CDN 렌더 차단 제거, 글꼴 동일)
 import "./fonts/pretendard/pretendardvariable-dynamic-subset.css";
+// 사이트에 쓰인 글자만 담은 서브셋(약 100KB). 동적 서브셋보다 뒤에 와야 우선 적용된다. 생성: scripts/font-subset.py
+import "./fonts/pretendard/site-subset.css";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";

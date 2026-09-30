@@ -38,6 +38,11 @@ const nextConfig: NextConfig = {
           { key: "Content-Security-Policy-Report-Only", value: cspReportOnly },
         ],
       },
+      {
+        // 파일명에 해시가 붙은 서브셋 폰트: 내용이 바뀌면 이름도 바뀌므로 오래 캐시
+        source: "/fonts/:file*",
+        headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }],
+      },
     ];
   },
 };

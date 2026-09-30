@@ -1,6 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/** Unsplash URL의 w= 값만 바꿔 화면 폭에 맞는 크기를 고르게 한다(같은 사진, 같은 비율). */
+function stockSrcSet(src: string) {
+  if (!/[?&]w=\d+/.test(src)) return undefined;
+  return [640, 960, 1280, 1600].map((w) => `${src.replace(/([?&]w=)\d+/, `$1${w}`)} ${w}w`).join(", ");
+}
+
 /**
  * 하위 페이지 머리: 매장 실사진을 깐 띠 위에 제목. 사진이 없으면 어두운 단색.
  * photo.stock=true 이면 외부 스톡(Unsplash) URL을 일반 img로 넣고 "참고 이미지" 표시.
@@ -23,6 +29,8 @@ export default function PageHero({
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={photo.src}
+            srcSet={stockSrcSet(photo.src)}
+            sizes="100vw"
             alt=""
             decoding="async"
             fetchPriority="high"
