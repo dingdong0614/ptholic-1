@@ -56,9 +56,8 @@ export default function TrainerTabs() {
         className="grid gap-8 pt-10 md:grid-cols-[300px_1fr] md:gap-12"
       >
         <div>
-          <div className="photo-card relative aspect-[4/5]">
-            <Image src={t.photo} alt={`${t.name} 트레이너 프로필 사진`} fill className="trainer-photo object-cover object-top" sizes="300px" />
-            <span aria-hidden="true" className="trainer-tone" />
+          <div className="photo-card relative aspect-[4/5] bg-[#ecebec]">
+            <Image src={t.photo} alt={`${t.name} 트레이너 프로필 사진`} fill className="object-cover object-top" sizes="300px" />
           </div>
           <p className="mt-4 text-[14px] font-bold text-accent-strong">{t.specialty}</p>
         </div>

@@ -118,15 +118,14 @@ export default function HomePage() {
                   href={`/trainers#trainer-${i}`}
                   className="group grid h-full grid-cols-[120px_1fr] overflow-hidden rounded-[14px] border border-line bg-surface sm:block"
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden bg-surface">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-[#ecebec]">
                     <Image
                       src={t.photo}
                       alt={`${t.name} 트레이너`}
                       fill
                       sizes="(max-width: 640px) 120px, 290px"
-                      className="trainer-photo object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
                     />
-                    <span aria-hidden="true" className="trainer-tone" />
                   </div>
                   <div className="p-4 sm:p-6">
                     <h3 className="text-[26px] sm:text-[32px]">{t.name}</h3>
